@@ -1,5 +1,8 @@
-cany (0.5.4-1) UNRELEASED; urgency=medium
+cany (0.5.4-2~1.gbp40931d) UNRELEASED; urgency=medium
+
+  ** SNAPSHOT build @40931d0aca187fe8cb07575451daa0a7c510a5e8 **
 
   * Import upstream release 0.5.4
+  * ignore specs
 
- -- Jan Graichen <jg@altimos.de>  Tue, 02 Jun 2015 16:17:33 +0200
+ -- Jan Graichen <jg@altimos.de>  Tue, 02 Jun 2015 16:58:41 +0200

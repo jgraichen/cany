@@ -1,0 +1,18 @@
+Source: cany
+Section: ruby
+Priority: optional
+Maintainer: Jan Graichen <jg@altimos.de>
+Uploaders:  <jg@altimos.de>
+Build-Depends: debhelper (>= 7.0.50~), gem2deb, ruby-rspec, rake
+Standards-Version: 3.9.5
+Homepage: https://github.com/mswart/cany
+Testsuite: autopkgtest
+XS-Ruby-Versions: all
+
+Package: cany
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby | ruby-interpreter
+# bundler (~> 1.3, development), rake (>= 0, development), rspec (>= 0, development)
+Description: Canning your ruby applications
+ Canning your ruby applications

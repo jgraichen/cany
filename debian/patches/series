@@ -1,1 +1,1 @@
-sidekiq_update
+0001-sidekiq-correct-cmd-line-call-for-multiple-queues.patch

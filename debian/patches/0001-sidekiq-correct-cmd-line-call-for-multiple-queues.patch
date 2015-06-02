@@ -1,0 +1,38 @@
+From: Malte Swart <mswart@devtation.de>
+Date: Mon, 1 Jun 2015 14:36:30 +0200
+Subject: sidekiq: correct cmd line call for multiple queues
+
+---
+ lib/cany/recipes/sidekiq.rb       | 4 ++--
+ spec/cany/recipes/sidekiq_spec.rb | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/lib/cany/recipes/sidekiq.rb b/lib/cany/recipes/sidekiq.rb
+index e71a72a..02c375a 100644
+--- a/lib/cany/recipes/sidekiq.rb
++++ b/lib/cany/recipes/sidekiq.rb
+@@ -42,9 +42,9 @@ module Cany::Recipes
+ 
+     def sidekiq_args
+       args = %w(--environment production)
+-      if queues.any?
++      queues.each do |queue|
+         args << '--queue'
+-        args << queues.join(',')
++        args << queue.to_s
+       end
+       args
+     end
+diff --git a/spec/cany/recipes/sidekiq_spec.rb b/spec/cany/recipes/sidekiq_spec.rb
+index a2d52b7..f831cfd 100644
+--- a/spec/cany/recipes/sidekiq_spec.rb
++++ b/spec/cany/recipes/sidekiq_spec.rb
+@@ -42,7 +42,7 @@ describe Cany::Recipes::Sidekiq do
+     it 'should launch sidekiq with the list of queues' do
+       expect(recipe).to receive(:install_service).with(
+         :sidekiq,
+-        %w(/usr/bin/test sidekiq --environment production --queue name1,name2),
++        %w(/usr/bin/test sidekiq --environment production --queue name1 --queue name2),
+         user: 'www-data', group: 'www-data'
+       )
+       recipe.inner = double('recipe')
